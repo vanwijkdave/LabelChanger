@@ -1,0 +1,9 @@
+Package: com.daveapps.labelchanger
+Name: LabelChanger
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: Dave van Wijk
+Author: Dave van Wijk
+Section: Tweaks
