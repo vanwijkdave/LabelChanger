@@ -7,6 +7,21 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>headerCellClass</key>
+			<string>HBPackageNameHeaderCell</string>
+			<key>packageIdentifier</key>
+			<string>com.daveapps.labelchanger</string>
+			<key>backgroundGradientColors</key>
+			<array>
+				<string>#f442aa</string>
+				<string>#f442aa</string>
+			</array>
+			<key>version</key>
+			<string>1.0</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Hide those f#*$ing labels</string>
 		</dict>
@@ -21,6 +36,18 @@
 			<string>Hide Labels</string>
 			<key>key</key>
 			<string>hideIconsPref</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.daveapps.labelchanger</string>
+			<key>label</key>
+			<string>Make labels bold</string>
+			<key>key</key>
+			<string>boldLabelsPref</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>

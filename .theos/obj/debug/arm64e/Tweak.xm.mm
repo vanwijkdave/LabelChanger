@@ -1,7 +1,8 @@
 #line 1 "Tweak.xm"
 
 BOOL hideIcons = false;
-BOOL changeLabels = true;
+BOOL boldLabels = false;
+BOOL changeLabels = false;
 
 
 
@@ -30,7 +31,7 @@ BOOL changeLabels = true;
 @class SBMutableIconLabelImageParameters; 
 static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, NSString *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, NSString *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIFont *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIFont *); 
 
-#line 8 "Tweak.xm"
+#line 9 "Tweak.xm"
 
 
 
@@ -62,10 +63,22 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(
 
 
 static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, UIFont * arg1) {
-	
-	arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:16];
 
-	_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
+	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
+	persistentDomainForName:@"com.daveapps.labelchanger"];
+	id boldLabelsPref = [bundleDefaults valueForKey:@"boldLabelsPref"];
+		if ([boldLabelsPref isEqual:@0]) {
+			boldLabels = false;
+		} else {
+			boldLabels = true;
+		}
+	if (boldLabels == true) {
+		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:14];
+	    _logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
+	} else if (boldLabels == false) {
+			_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
+	}
+
 }
 
 
@@ -79,4 +92,4 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$SBMutableIconLabelImageParameters = objc_getClass("SBMutableIconLabelImageParameters"); MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setTextColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setText:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFont:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$);} }
-#line 54 "Tweak.xm"
+#line 67 "Tweak.xm"

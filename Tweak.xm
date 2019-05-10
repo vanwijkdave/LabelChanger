@@ -1,6 +1,7 @@
 
 BOOL hideIcons = false;
-BOOL changeLabels = true;
+BOOL boldLabels = false;
+BOOL changeLabels = false;
 
 
 
@@ -36,10 +37,22 @@ BOOL changeLabels = true;
 
 
 -(void)setFont:(UIFont *)arg1 {
-	
-	arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:16];
 
-	%orig;
+	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
+	persistentDomainForName:@"com.daveapps.labelchanger"];
+	id boldLabelsPref = [bundleDefaults valueForKey:@"boldLabelsPref"];
+		if ([boldLabelsPref isEqual:@0]) {
+			boldLabels = false;
+		} else {
+			boldLabels = true;
+		}
+	if (boldLabels == true) {
+		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:14];
+	    %orig;
+	} else if (boldLabels == false) {
+			%orig;
+	}
+
 }
 
 
