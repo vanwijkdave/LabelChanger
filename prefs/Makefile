@@ -5,6 +5,11 @@ LabelChanger_FILES = labelchangerRootListController.m
 LabelChanger_INSTALL_PATH = /Library/PreferenceBundles
 LabelChanger_FRAMEWORKS = UIKit
 LabelChanger_PRIVATE_FRAMEWORKS = Preferences
+LabelChanger_EXTRA_FRAMEWORKS = Cephei CepheiPrefs
+LabelChanger_LIBRARIES = colorpicker
+ARCHS = arm64 arm64e
+
+
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

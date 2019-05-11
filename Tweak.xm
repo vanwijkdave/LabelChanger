@@ -1,8 +1,12 @@
-
+#import "labelchanger.h"
 BOOL hideIcons = false;
 BOOL boldLabels = false;
 BOOL changeColors = false;
 BOOL changeLabels = false;
+NSString *color = nil;
+NSString *customLabel = @"label";
+UIColor *customColor = nil;
+
 
 
 
@@ -13,6 +17,9 @@ BOOL changeLabels = false;
 
 -(void)setTextColor:(UIColor *)arg1 {
 
+	////verander de kleur van de labels
+
+	//laad de prefs
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id colorPref = [bundleDefaults valueForKey:@"colorPref"];
@@ -22,8 +29,12 @@ BOOL changeLabels = false;
 			changeColors = true;
 		}
 
+	NSMutableDictionary *colors = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
+	color = [[colors objectForKey:@"kTintColor"] stringValue] ?[[colors objectForKey:@"kTintColor"] stringValue] : @"#FFFFFF";
+
+
     if (changeColors  == true){
-		arg1 = [UIColor colorWithRed:0.00 green:1.00 blue:0.64 alpha:1.0];
+		arg1 = customColor;
 		%orig;
 	} else {
 		%orig;
@@ -41,13 +52,27 @@ BOOL changeLabels = false;
 		} else {
 			hideIcons = true;
 		}
+	NSMutableDictionary *colors = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
+	color = [[colors objectForKey:@"kTintColor"] stringValue] ?[[colors objectForKey:@"kTintColor"] stringValue] : @"#FFFFFF";
 
+	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger.plist"];
+	customLabel = [[settings objectForKey:@"kCustomText1"] stringValue] ?[[settings objectForKey:@"kCustomText1"] stringValue] : @"label";
+
+	id customLabelPref = [bundleDefaults valueForKey:@"customLabelPref"];
+		if ([customLabelPref isEqual:@0]) {
+			changeLabels = false;
+		} else {
+			changeLabels = true;
+		}
 
 	if (hideIcons == true) {
-	arg1 = nil;
-	%orig;
-	} else if (hideIcons == false) {
-			%orig;
+		arg1 = nil;
+		%orig;
+	} else if (hideIcons == false && changeLabels == false) {
+		%orig;
+	} else if (hideIcons == false && changeLabels == true) {
+		arg1 = customLabel;
+		%orig;
 	}
 }
 
