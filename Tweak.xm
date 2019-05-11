@@ -1,6 +1,7 @@
 
 BOOL hideIcons = false;
 BOOL boldLabels = false;
+BOOL changeColors = false;
 BOOL changeLabels = false;
 
 
@@ -11,8 +12,23 @@ BOOL changeLabels = false;
 
 
 -(void)setTextColor:(UIColor *)arg1 {
-	arg1 = [UIColor colorWithRed:0.00 green:1.00 blue:0.64 alpha:1.0];
-	%orig;
+
+	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
+	persistentDomainForName:@"com.daveapps.labelchanger"];
+	id colorPref = [bundleDefaults valueForKey:@"colorPref"];
+		if ([colorPref isEqual:@0]) {
+			changeColors = false;
+		} else {
+			changeColors = true;
+		}
+
+    if (changeColors  == true){
+		arg1 = [UIColor colorWithRed:0.00 green:1.00 blue:0.64 alpha:1.0];
+		%orig;
+	} else {
+		%orig;
+	}
+
 }
 
 -(void)setText:(NSString *)arg1 {
