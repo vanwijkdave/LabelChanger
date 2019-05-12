@@ -3,6 +3,9 @@ BOOL hideIcons = false;
 BOOL boldLabels = false;
 BOOL changeColors = false;
 BOOL changeLabels = false;
+
+int labelSize = 14;
+
 NSString *color = nil;
 NSString *customLabel = @"label";
 UIColor *customColor = nil;
@@ -19,6 +22,9 @@ UIColor *customColor = nil;
 
 	////verander de kleur van de labels
 
+	NSMutableDictionary *colors = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
+	color = [[colors objectForKey:@"kTintColor"] stringValue] ?[[colors objectForKey:@"kTintColor"] stringValue] : @"#FFFFFF";
+
 	//laad de prefs
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
@@ -29,12 +35,12 @@ UIColor *customColor = nil;
 			changeColors = true;
 		}
 
-	NSMutableDictionary *colors = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
-	color = [[colors objectForKey:@"kTintColor"] stringValue] ?[[colors objectForKey:@"kTintColor"] stringValue] : @"#FFFFFF";
+
+	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
 
 
     if (changeColors  == true){
-		arg1 = customColor;
+		arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#ff0000"));;
 		%orig;
 	} else {
 		%orig;
@@ -82,13 +88,19 @@ UIColor *customColor = nil;
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id boldLabelsPref = [bundleDefaults valueForKey:@"boldLabelsPref"];
+
+
 		if ([boldLabelsPref isEqual:@0]) {
 			boldLabels = false;
 		} else {
 			boldLabels = true;
 		}
+
+
+
+
 	if (boldLabels == true) {
-		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:14];
+		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:labelSize];
 	    %orig;
 	} else if (boldLabels == false) {
 			%orig;
