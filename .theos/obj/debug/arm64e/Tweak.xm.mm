@@ -71,6 +71,7 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextCo
 		arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#ff0000"));;
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$(self, _cmd, arg1);
 	} else {
+		
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$(self, _cmd, arg1);
 	}
 
@@ -165,4 +166,4 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusH
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$SBMutableIconLabelImageParameters = objc_getClass("SBMutableIconLabelImageParameters"); MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setTextColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setText:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFont:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFocusHighlightColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$);} }
-#line 140 "Tweak.xm"
+#line 141 "Tweak.xm"

@@ -45,6 +45,7 @@ UIColor *borderColor = nil;
 		arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#ff0000"));;
 		%orig;
 	} else {
+		// arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#ff0000"));;
 		%orig;
 	}
 
