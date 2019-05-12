@@ -1,4 +1,6 @@
 #include "labelchangerRootListController.h"
+#include<spawn.h>
+
 #define UIColorFromRGB(rgbValue) \
 	[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 	 green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
@@ -29,5 +31,24 @@
 	return _specifiers;
 }
 
+- (void)link {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://patreon.com/vanwijkdave"]];
+}
+- (void)twitterDave {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/davewijk"]];
+}
+- (void)twitterApps {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/daveapps"]];
+}
+-(void)respring {
+    
+    
+    pid_t pid;
+    int status;
+    const char* args[] = {"killall", "SpringBoard", NULL};
+    posix_spawn(&pid, "/usr/bin/killall", NULL, NULL, (char* const*)args, NULL);
+    waitpid(pid, &status, WEXITED);
+    
+}
 
 @end

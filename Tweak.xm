@@ -3,13 +3,15 @@ BOOL hideIcons = false;
 BOOL boldLabels = false;
 BOOL changeColors = false;
 BOOL changeLabels = false;
+BOOL changeLabelBorder = false;
 
 int labelSize = 14;
 
 NSString *color = nil;
+
 NSString *customLabel = @"label";
 UIColor *customColor = nil;
-
+UIColor *borderColor = nil;
 
 
 
@@ -108,12 +110,30 @@ UIColor *customColor = nil;
 
 }
 
+-(void)setFocusHighlightColor:(UIColor *)arg1 {
+
+	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
+	persistentDomainForName:@"com.daveapps.labelchanger"];
+	id borderPref = [bundleDefaults valueForKey:@"borderPref"];
+
+
+		if ([borderPref isEqual:@0]) {
+			changeLabelBorder = false;
+		} else {
+			changeLabelBorder = true;
+		}
+
+	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
+
+
+	if (changeLabelBorder == true) {
+		arg1 = (LCPParseColorString([settings objectForKey:@"kBorderColor"], @"#ff0000"));;
+		%orig;
+	} else {
+		%orig;
+	}
+
+}
+
 
 %end
-
-
-// static void loadPrefs() {
-// 	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.conorthedev.chronoprefs.plist"];
-
-// 	hideIcons = [settings objectForKey:@"khideIcons"] ?[[settings objectForKey:@"khideIcons"] boolValue] : YES;
-// }
