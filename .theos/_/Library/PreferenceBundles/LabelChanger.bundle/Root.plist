@@ -87,7 +87,7 @@
 				<key>fallback</key>
 				<string>#FFFFFF</string>
 				<key>alpha</key>
-				<false />
+				<true />
 			</dict>
 			<key>label</key>
 			<string>Custom Labelcolor</string>
@@ -122,7 +122,7 @@
 				<key>fallback</key>
 				<string>#FFFFFF</string>
 				<key>alpha</key>
-				<false />
+				<true />
 			</dict>
 			<key>label</key>
 			<string>Custom BorderColor:</string>
