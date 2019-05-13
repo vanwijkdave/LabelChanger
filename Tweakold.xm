@@ -1,16 +1,13 @@
 #import "labelchanger.h"
-
-
-
 BOOL hideIcons = false;
 BOOL boldLabels = false;
 BOOL changeColors = false;
 BOOL changeLabels = false;
 BOOL changeLabelBorder = false;
-BOOL changeLabelSize = true;
 
+int labelSize = 14;
 
-NSString *stringTextSize = @"14";
+NSString *color = @"yeet";
 
 NSString *customLabel = @"label";
 UIColor *customColor = nil;
@@ -25,22 +22,23 @@ UIColor *borderColor = nil;
 
 -(void)setTextColor:(UIColor *)arg1 {
 
-	////change labelcolor
+	////verander de kleur van de labels
 
-	//link the color prefe
+	NSMutableDictionary *colors = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
+	color = [[colors objectForKey:@"kTintColor"] stringValue] ?[[colors objectForKey:@"kTintColor"] stringValue] : @"#FFFFFF";
 
 	//laad de prefs
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id colorPref = [bundleDefaults valueForKey:@"colorPref"];
-	//change the enabled bool
 		if ([colorPref isEqual:@0]) {
 			changeColors = false;
 		} else {
 			changeColors = true;
 		}
-	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
 
+
+	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
 
 
     if (changeColors  == true){
@@ -64,8 +62,6 @@ UIColor *borderColor = nil;
 		} else {
 			hideIcons = true;
 		}
-	
-	//laad de labels in een nsstring
 
 
 	if (hideIcons == true) {
@@ -90,30 +86,15 @@ UIColor *borderColor = nil;
 			boldLabels = true;
 		}
 
-	id sizePref = [bundleDefaults valueForKey:@"sizePref"];
-
-		if ([sizePref isEqual:@0]) {
-			changeLabelSize = false;
-		} else {
-			changeLabelSize = true;
-		}
-
-	stringTextSize = [[settings objectForKey:@"sizePref2"] stringValue] ?[[settings objectForKey:@"sizePref2"] stringValue] : @"1";
-	int i = [stringTextSize intValue];
+	color = [[settings objectForKey:@"sizePref2"] stringValue] ?[[settings objectForKey:@"sizePref2"] stringValue] : @"1";
+	int i = [color intValue];
 
 
-	if (boldLabels == true && changeLabelSize == true) {
+	if (boldLabels == true) {
 		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:i];
 	    %orig;
-	} else if (boldLabels == true && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:13];
-		%orig;
-	} else if (boldLabels == false && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:@"Arial" size:i];
-		%orig;
-	}  else if (boldLabels == false && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:@"Arial" size:13];
-		%orig;
+	} else if (boldLabels == false) {
+			%orig;
 	}
 
 }
