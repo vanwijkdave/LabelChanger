@@ -37,7 +37,7 @@
 			<key>label</key>
 			<string>Hide Labels</string>
 			<key>key</key>
-			<string>hideIconsPref</string>
+			<string>hideIconsPref</string> 
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -130,6 +130,22 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>default</key>
+			<string>14</string>
+			<key>placeholder</key>
+			<string>px</string>
+			<key>defaults</key>
+			<string>com.daveapps.labelchanger</string>
+			<key>label</key>
+			<string>Text Size In Px: </string>
+			<key>key</key>
+			<string>sizePref2</string>
+			<key>alternateColors</key>
+			<true />
 		</dict>
 		<dict>
 			<key>cell</key>

@@ -8,7 +8,7 @@ BOOL changeLabelBorder = false;
 
 int labelSize = 14;
 
-NSString *color = nil;
+NSString *color = @"yeet";
 
 NSString *customLabel = @"label";
 UIColor *customColor = nil;
@@ -88,8 +88,6 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(
 		} else {
 			hideIcons = true;
 		}
-	NSMutableDictionary *colors = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
-	color = [[colors objectForKey:@"kTintColor"] stringValue] ?[[colors objectForKey:@"kTintColor"] stringValue] : @"#FFFFFF";
 
 
 	if (hideIcons == true) {
@@ -103,10 +101,10 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(
 
 static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, UIFont * arg1) {
 
+	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger.plist"];
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id boldLabelsPref = [bundleDefaults valueForKey:@"boldLabelsPref"];
-
 
 		if ([boldLabelsPref isEqual:@0]) {
 			boldLabels = false;
@@ -114,9 +112,12 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(
 			boldLabels = true;
 		}
 
+	color = [[settings objectForKey:@"sizePref2"] stringValue] ?[[settings objectForKey:@"sizePref2"] stringValue] : @"1";
+	int i = [color intValue];
+
 
 	if (boldLabels == true) {
-		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:labelSize];
+		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:i];
 	    _logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	} else if (boldLabels == false) {
 			_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
@@ -130,7 +131,6 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusH
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id borderPref = [bundleDefaults valueForKey:@"borderPref"];
 
-
 		if ([borderPref isEqual:@0]) {
 			changeLabelBorder = false;
 		} else {
@@ -138,7 +138,7 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusH
 		}
 
 	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
-
+	
 
 	if (changeLabelBorder == true) {
 		arg1 = (LCPParseColorString([settings objectForKey:@"kBorderColor"], @"#ff0000"));;

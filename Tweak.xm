@@ -7,7 +7,7 @@ BOOL changeLabelBorder = false;
 
 int labelSize = 14;
 
-NSString *color = nil;
+NSString *color = @"yeet";
 
 NSString *customLabel = @"label";
 UIColor *customColor = nil;
@@ -62,8 +62,6 @@ UIColor *borderColor = nil;
 		} else {
 			hideIcons = true;
 		}
-	NSMutableDictionary *colors = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
-	color = [[colors objectForKey:@"kTintColor"] stringValue] ?[[colors objectForKey:@"kTintColor"] stringValue] : @"#FFFFFF";
 
 
 	if (hideIcons == true) {
@@ -77,10 +75,10 @@ UIColor *borderColor = nil;
 
 -(void)setFont:(UIFont *)arg1 {
 
+	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger.plist"];
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id boldLabelsPref = [bundleDefaults valueForKey:@"boldLabelsPref"];
-
 
 		if ([boldLabelsPref isEqual:@0]) {
 			boldLabels = false;
@@ -88,9 +86,12 @@ UIColor *borderColor = nil;
 			boldLabels = true;
 		}
 
+	color = [[settings objectForKey:@"sizePref2"] stringValue] ?[[settings objectForKey:@"sizePref2"] stringValue] : @"1";
+	int i = [color intValue];
+
 
 	if (boldLabels == true) {
-		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:labelSize];
+		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:i];
 	    %orig;
 	} else if (boldLabels == false) {
 			%orig;
@@ -104,7 +105,6 @@ UIColor *borderColor = nil;
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id borderPref = [bundleDefaults valueForKey:@"borderPref"];
 
-
 		if ([borderPref isEqual:@0]) {
 			changeLabelBorder = false;
 		} else {
@@ -112,7 +112,7 @@ UIColor *borderColor = nil;
 		}
 
 	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
-
+	
 
 	if (changeLabelBorder == true) {
 		arg1 = (LCPParseColorString([settings objectForKey:@"kBorderColor"], @"#ff0000"));;
