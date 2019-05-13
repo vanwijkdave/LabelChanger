@@ -133,32 +133,6 @@
 		</dict>
 		<dict>
 			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<false/>
-			<key>defaults</key>
-			<string>com.daveapps.labelchanger</string>
-			<key>label</key>
-			<string>Overwrite Label</string>
-			<key>key</key>
-			<string>customLabelPref</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSEditTextCell</string>
-			<key>placeholder</key>
-			<string>Text</string>
-			<key>defaults</key>
-			<string>com.daveapps.labelchanger</string>
-			<key>label</key>
-			<string>Custom Label Text: </string>
-			<key>key</key>
-			<string>kCustomText1</string>
-			<key>alternateColors</key>
-			<true />
-		</dict>
-		<dict>
-			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Tools:</string>

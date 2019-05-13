@@ -45,7 +45,7 @@ UIColor *borderColor = nil;
 		arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#ff0000"));;
 		%orig;
 	} else {
-		
+
 		%orig;
 
 	}
@@ -65,23 +65,11 @@ UIColor *borderColor = nil;
 	NSMutableDictionary *colors = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger-colors.plist"];
 	color = [[colors objectForKey:@"kTintColor"] stringValue] ?[[colors objectForKey:@"kTintColor"] stringValue] : @"#FFFFFF";
 
-	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger.plist"];
-	customLabel = [[settings objectForKey:@"kCustomText1"] stringValue] ?[[settings objectForKey:@"kCustomText1"] stringValue] : @"label";
-
-	id customLabelPref = [bundleDefaults valueForKey:@"customLabelPref"];
-		if ([customLabelPref isEqual:@0]) {
-			changeLabels = false;
-		} else {
-			changeLabels = true;
-		}
 
 	if (hideIcons == true) {
 		arg1 = nil;
 		%orig;
 	} else if (hideIcons == false && changeLabels == false) {
-		%orig;
-	} else if (hideIcons == false && changeLabels == true) {
-		arg1 = customLabel;
 		%orig;
 	}
 }
