@@ -12,10 +12,11 @@ BOOL changeLabelSize = true;
 
 NSString *stringTextSize = @"14";
 
+NSMutableArray *fonts = [[NSMutableArray alloc] initWithObjects:@"Helvetica", @"Chalkduster", @"Arial", @"Arial-BoldMT", nil];
+
 NSString *customLabel = @"label";
 UIColor *customColor = nil;
 UIColor *borderColor = nil;
-
 
 
 //hook de SBMutableIconLabelImageParameters
@@ -103,16 +104,16 @@ UIColor *borderColor = nil;
 
 
 	if (boldLabels == true && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:i];
+		arg1 = [UIFont fontWithName:fonts[3] size:i];
 	    %orig;
 	} else if (boldLabels == true && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:13];
+		arg1 = [UIFont fontWithName:fonts[3] size:13];
 		%orig;
 	} else if (boldLabels == false && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:@"Arial" size:i];
+		arg1 = [UIFont fontWithName:fonts[1] size:i];
 		%orig;
 	}  else if (boldLabels == false && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:@"Arial" size:13];
+		arg1 = [UIFont fontWithName:fonts[1] size:13];
 		%orig;
 	}
 

@@ -13,10 +13,11 @@ BOOL changeLabelSize = true;
 
 NSString *stringTextSize = @"14";
 
+NSMutableArray *fonts = [[NSMutableArray alloc] initWithObjects:@"Helvetica", @"Chalkduster", @"Arial", @"Arial-BoldMT", nil];
+
 NSString *customLabel = @"label";
 UIColor *customColor = nil;
 UIColor *borderColor = nil;
-
 
 
 
@@ -44,7 +45,7 @@ UIColor *borderColor = nil;
 @class SBMutableIconLabelImageParameters; 
 static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, NSString *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, NSString *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIFont *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIFont *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); 
 
-#line 22 "Tweak.xm"
+#line 23 "Tweak.xm"
 
 
 
@@ -129,16 +130,16 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(
 
 
 	if (boldLabels == true && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:i];
+		arg1 = [UIFont fontWithName:fonts[3] size:i];
 	    _logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	} else if (boldLabels == true && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:@"Arial-BoldMT" size:13];
+		arg1 = [UIFont fontWithName:fonts[3] size:13];
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	} else if (boldLabels == false && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:@"Arial" size:i];
+		arg1 = [UIFont fontWithName:fonts[1] size:i];
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	}  else if (boldLabels == false && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:@"Arial" size:13];
+		arg1 = [UIFont fontWithName:fonts[1] size:13];
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	}
 
@@ -172,4 +173,4 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusH
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$SBMutableIconLabelImageParameters = objc_getClass("SBMutableIconLabelImageParameters"); MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setTextColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setText:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFont:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFocusHighlightColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$);} }
-#line 147 "Tweak.xm"
+#line 148 "Tweak.xm"
