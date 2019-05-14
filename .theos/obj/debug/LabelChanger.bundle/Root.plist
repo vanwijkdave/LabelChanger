@@ -60,8 +60,8 @@
 				<string>Font:</string>
 				<key>validValues</key>
         	<array>
-				<string>Arial</string>
-				<string>Arial-BoldMT</string>
+				<string>Arial	(default)</string>
+				<string>Arial-BoldMT	(default-Bold)</string>
 				<string>Futura</string>
 				<string>Menlo</string>
 				<string>Chalkduster</string>
