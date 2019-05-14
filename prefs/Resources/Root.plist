@@ -46,24 +46,6 @@
 			<string>Change Label Appearance:</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>com.daveapps.labelchanger</string>
-			<key>label</key>
-			<string>Make Labels Bold</string>
-			<key>key</key>
-			<string>boldLabelsPref</string>
-		</dict>
-		<dict>
-      		<key>cell</key>
-            <string>PSGroupCell</string>
-            <key>label</key>
-            <string>Change Your Label Font:</string>
-        </dict>
-		<dict>
 				<key>cell</key>
 				<string>PSLinkListCell</string>
 				<key>detail</key>
@@ -73,22 +55,30 @@
 				<key>default</key>
 				<integer>0</integer>
 				<key>key</key>
-				<string>key1</string>
+				<string>fontsSetting</string>
 				<key>label</key>
-				<string>Amount</string>
+				<string>Font:</string>
 				<key>validValues</key>
         	<array>
-				<integer>10000</integer>
-				<integer>50000</integer>
-				<integer>2000000</integer>
-				<integer>500000</integer>
+				<string>Arial</string>
+				<string>Arial-BoldMT</string>
+				<string>Futura</string>
+				<string>Menlo</string>
+				<string>Chalkduster</string>
+				<string>Helvetica</string>
+				<string>Zapfino</string>
+				<string>Marker Felt</string>
     		</array>
        			<key>validTitles</key>
             <array>
-				<string>10k</string>
-				<string>50k</string>
-				<string>2000k</string>
-				<string>500k</string>
+				<string>Arial</string>
+				<string>Arial-BoldMT</string>
+				<string>Futura</string>
+				<string>Menlo</string>
+				<string>Chalkduster</string>
+				<string>Helvetica</string>
+				<string>Zapfino</string>
+				<string>Marker Felt</string>
            	</array>
 		</dict>
 		<dict>
@@ -178,20 +168,22 @@
 			<string>sizePref</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSEditTextCell</string>
-			<key>default</key>
-			<string>14</string>
-			<key>placeholder</key>
-			<string>px</string>
-			<key>defaults</key>
-			<string>com.daveapps.labelchanger</string>
-			<key>label</key>
-			<string>Text Size In Px: </string>
-			<key>key</key>
-			<string>sizePref2</string>
-			<key>alternateColors</key>
-			<true />
+    		<key>cellClass</key>
+    		<string>HBStepperTableCell</string>
+    		<key>default</key>
+    		<real>14</real>
+   			<key>defaults</key>
+    		<string>com.daveapps.labelchanger</string>
+    		<key>key</key>
+    		<string>sizeStepper</string>
+    		<key>label</key>
+    		<string>Text Size: %i px</string>
+    		<key>max</key>
+    		<real>30</real>
+    		<key>min</key>
+    		<real>5</real>
+    		<key>singularLabel</key>
+    		<string>1 px</string>
 		</dict>
 		<dict>
 			<key>cell</key>

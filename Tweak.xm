@@ -2,8 +2,7 @@
 
 
 
-BOOL hideIcons = false;
-BOOL boldLabels = false;
+BOOL hideLabels = false;
 BOOL changeColors = false;
 BOOL changeLabels = false;
 BOOL changeLabelBorder = false;
@@ -34,6 +33,7 @@ UIColor *borderColor = nil;
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id colorPref = [bundleDefaults valueForKey:@"colorPref"];
+
 	//change the enabled bool
 		if ([colorPref isEqual:@0]) {
 			changeColors = false;
@@ -61,18 +61,18 @@ UIColor *borderColor = nil;
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id hideIconsPref = [bundleDefaults valueForKey:@"hideIconsPref"];
 		if ([hideIconsPref isEqual:@0]) {
-			hideIcons = false;
+			hideLabels = false;
 		} else {
-			hideIcons = true;
+			hideLabels = true;
 		}
 	
 	//laad de labels in een nsstring
 
 
-	if (hideIcons == true) {
+	if (hideLabels == true) {
 		arg1 = nil;
 		%orig;
-	} else if (hideIcons == false && changeLabels == false) {
+	} else if (hideLabels == false && changeLabels == false) {
 		%orig;
 	}
 }
@@ -80,16 +80,8 @@ UIColor *borderColor = nil;
 
 -(void)setFont:(UIFont *)arg1 {
 
-	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger.plist"];
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
-	id boldLabelsPref = [bundleDefaults valueForKey:@"boldLabelsPref"];
-
-		if ([boldLabelsPref isEqual:@0]) {
-			boldLabels = false;
-		} else {
-			boldLabels = true;
-		}
 
 	id sizePref = [bundleDefaults valueForKey:@"sizePref"];
 
@@ -99,21 +91,15 @@ UIColor *borderColor = nil;
 			changeLabelSize = true;
 		}
 
-	stringTextSize = [[settings objectForKey:@"sizePref2"] stringValue] ?[[settings objectForKey:@"sizePref2"] stringValue] : @"1";
-	int i = [stringTextSize intValue];
+	id fontsSetting = [bundleDefaults valueForKey:@"fontsSetting"];
+	id sizeStepper = [bundleDefaults valueForKey:@"sizeStepper"];
+	int id = [sizeStepper intValue];
 
-
-	if (boldLabels == true && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:fonts[3] size:i];
+	if (changeLabelSize == true) {
+		arg1 = [UIFont fontWithName:fontsSetting size:id];
 	    %orig;
-	} else if (boldLabels == true && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:fonts[3] size:13];
-		%orig;
-	} else if (boldLabels == false && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:fonts[1] size:i];
-		%orig;
-	}  else if (boldLabels == false && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:fonts[1] size:13];
+	} else if (changeLabelSize == false) {
+		arg1 = [UIFont fontWithName:fontsSetting size:14];
 		%orig;
 	}
 

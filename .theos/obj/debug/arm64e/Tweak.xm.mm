@@ -3,8 +3,7 @@
 
 
 
-BOOL hideIcons = false;
-BOOL boldLabels = false;
+BOOL hideLabels = false;
 BOOL changeColors = false;
 BOOL changeLabels = false;
 BOOL changeLabelBorder = false;
@@ -45,7 +44,7 @@ UIColor *borderColor = nil;
 @class SBMutableIconLabelImageParameters; 
 static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, NSString *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, NSString *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIFont *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIFont *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); 
 
-#line 23 "Tweak.xm"
+#line 22 "Tweak.xm"
 
 
 
@@ -60,6 +59,7 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextCo
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id colorPref = [bundleDefaults valueForKey:@"colorPref"];
+
 	
 		if ([colorPref isEqual:@0]) {
 			changeColors = false;
@@ -87,18 +87,18 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id hideIconsPref = [bundleDefaults valueForKey:@"hideIconsPref"];
 		if ([hideIconsPref isEqual:@0]) {
-			hideIcons = false;
+			hideLabels = false;
 		} else {
-			hideIcons = true;
+			hideLabels = true;
 		}
 	
 	
 
 
-	if (hideIcons == true) {
+	if (hideLabels == true) {
 		arg1 = nil;
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$(self, _cmd, arg1);
-	} else if (hideIcons == false && changeLabels == false) {
+	} else if (hideLabels == false && changeLabels == false) {
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$(self, _cmd, arg1);
 	}
 }
@@ -106,16 +106,8 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(
 
 static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, UIFont * arg1) {
 
-	NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.daveapps.labelchanger.plist"];
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
-	id boldLabelsPref = [bundleDefaults valueForKey:@"boldLabelsPref"];
-
-		if ([boldLabelsPref isEqual:@0]) {
-			boldLabels = false;
-		} else {
-			boldLabels = true;
-		}
 
 	id sizePref = [bundleDefaults valueForKey:@"sizePref"];
 
@@ -125,21 +117,15 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(
 			changeLabelSize = true;
 		}
 
-	stringTextSize = [[settings objectForKey:@"sizePref2"] stringValue] ?[[settings objectForKey:@"sizePref2"] stringValue] : @"1";
-	int i = [stringTextSize intValue];
+	id fontsSetting = [bundleDefaults valueForKey:@"fontsSetting"];
+	id sizeStepper = [bundleDefaults valueForKey:@"sizeStepper"];
+	int id = [sizeStepper intValue];
 
-
-	if (boldLabels == true && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:fonts[3] size:i];
+	if (changeLabelSize == true) {
+		arg1 = [UIFont fontWithName:fontsSetting size:id];
 	    _logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
-	} else if (boldLabels == true && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:fonts[3] size:13];
-		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
-	} else if (boldLabels == false && changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:fonts[1] size:i];
-		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
-	}  else if (boldLabels == false && changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:fonts[1] size:13];
+	} else if (changeLabelSize == false) {
+		arg1 = [UIFont fontWithName:fontsSetting size:14];
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	}
 
@@ -173,4 +159,4 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusH
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$SBMutableIconLabelImageParameters = objc_getClass("SBMutableIconLabelImageParameters"); MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setTextColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setText:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFont:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFocusHighlightColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$);} }
-#line 148 "Tweak.xm"
+#line 134 "Tweak.xm"

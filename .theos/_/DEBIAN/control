@@ -6,5 +6,5 @@ Maintainer: Dave van Wijk
 Author: Dave van Wijk
 Section: Tweaks
 Depends: mobilesubstrate, ws.hbang.common (>= 1.11)
-Version: 1.1-29+debug
+Version: 1.1-43+debug
 Installed-Size: 384
