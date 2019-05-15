@@ -14,6 +14,7 @@ NSString *stringTextSize = @"14";
 NSMutableArray *fonts = [[NSMutableArray alloc] initWithObjects:@"Helvetica", @"Chalkduster", @"Arial", @"Arial-BoldMT", nil];
 
 NSString *customLabel = @"label";
+NSString *customLabel2 = @"✌🏽";
 UIColor *customColor = nil;
 UIColor *borderColor = nil;
 
@@ -65,12 +66,14 @@ UIColor *borderColor = nil;
 		} else {
 			hideLabels = true;
 		}
-	
+	// customLabel = arg1;
+	customLabel = [arg1 stringByReplacingOccurrencesOfString:@"Facebook" withString:@"Satan"];
+
 	//laad de labels in een nsstring
 
 
 	if (hideLabels == true) {
-		arg1 = nil;
+		arg1 = [NSString stringWithFormat:@"%@ %@", customLabel2, customLabel];
 		%orig;
 	} else if (hideLabels == false && changeLabels == false) {
 		%orig;
