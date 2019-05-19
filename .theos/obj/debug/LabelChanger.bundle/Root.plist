@@ -31,7 +31,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<false/>
+			<string>false</string>
 			<key>defaults</key>
 			<string>com.daveapps.labelchanger</string>
 			<key>label</key>
@@ -53,15 +53,15 @@
 				<key>defaults</key>
 				<string>com.daveapps.labelchanger</string>
 				<key>default</key>
-				<integer>0</integer>
+				<string>Arial</string>
 				<key>key</key>
 				<string>fontsSetting</string>
 				<key>label</key>
 				<string>Font:</string>
 				<key>validValues</key>
         	<array>
-				<string>Arial	(default)</string>
-				<string>Arial-BoldMT	(default-Bold)</string>
+				<string>Arial</string>
+				<string>Arial-BoldMT</string>
 				<string>Futura</string>
 				<string>Menlo</string>
 				<string>Chalkduster</string>

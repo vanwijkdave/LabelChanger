@@ -8,8 +8,15 @@ BOOL changeLabels = false;
 BOOL changeLabelBorder = false;
 BOOL changeLabelSize = true;
 
+int sizeLabel = 14;
 
-NSString *stringTextSize = @"14";
+NSMutableArray *wordsToReplace = [[NSMutableArray alloc] initWithObjects:@"Twitter", @"Facebook", @"Hulu", @"Chimera", nil];
+NSMutableArray *wordsToReplaceTo = [[NSMutableArray alloc] initWithObjects:@"Blue Bird", @"Devil", @"Lulu", @"Chimera", nil];
+
+
+
+
+
 
 NSMutableArray *fonts = [[NSMutableArray alloc] initWithObjects:@"Helvetica", @"Chalkduster", @"Arial", @"Arial-BoldMT", nil];
 
@@ -46,7 +53,7 @@ UIColor *borderColor = nil;
 
 
     if (changeColors  == true){
-		arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#ff0000"));;
+		arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#000000"));;
 		%orig;
 	} else {
 
@@ -67,15 +74,16 @@ UIColor *borderColor = nil;
 			hideLabels = true;
 		}
 	// customLabel = arg1;
-	customLabel = [arg1 stringByReplacingOccurrencesOfString:@"Facebook" withString:@"Satan"];
+	customLabel = [arg1 stringByReplacingOccurrencesOfString:wordsToReplace[1] withString:wordsToReplaceTo[1]];
 
 	//laad de labels in een nsstring
 
 
 	if (hideLabels == true) {
-		arg1 = [NSString stringWithFormat:@"%@ %@", customLabel2, customLabel];
+		// arg1 = [NSString stringWithFormat:@"%@ %@", customLabel, customLabel2];
+		// arg1 = nil;
 		%orig;
-	} else if (hideLabels == false && changeLabels == false) {
+	} else if (hideLabels == false){
 		%orig;
 	}
 }
@@ -93,16 +101,18 @@ UIColor *borderColor = nil;
 		} else {
 			changeLabelSize = true;
 		}
+		
 
 	id fontsSetting = [bundleDefaults valueForKey:@"fontsSetting"];
 	id sizeStepper = [bundleDefaults valueForKey:@"sizeStepper"];
-	int id = [sizeStepper intValue];
+	sizeLabel = [sizeStepper intValue];
+	
 
 	if (changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:fontsSetting size:id];
+		arg1 = [UIFont fontWithName:fontsSetting size:14.0];
 	    %orig;
 	} else if (changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:fontsSetting size:14];
+		arg1 = [UIFont fontWithName:fontsSetting size:14.0];
 		%orig;
 	}
 
@@ -124,7 +134,7 @@ UIColor *borderColor = nil;
 	
 
 	if (changeLabelBorder == true) {
-		arg1 = (LCPParseColorString([settings objectForKey:@"kBorderColor"], @"#ff0000"));;
+		arg1 = (LCPParseColorString([settings objectForKey:@"kBorderColor"], @"#ffffff"));;
 		%orig;
 	} else {
 		%orig;

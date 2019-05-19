@@ -9,8 +9,15 @@ BOOL changeLabels = false;
 BOOL changeLabelBorder = false;
 BOOL changeLabelSize = true;
 
+int sizeLabel = 14;
 
-NSString *stringTextSize = @"14";
+NSMutableArray *wordsToReplace = [[NSMutableArray alloc] initWithObjects:@"Twitter", @"Facebook", @"Hulu", @"Chimera", nil];
+NSMutableArray *wordsToReplaceTo = [[NSMutableArray alloc] initWithObjects:@"Blue Bird", @"Devil", @"Lulu", @"Chimera", nil];
+
+
+
+
+
 
 NSMutableArray *fonts = [[NSMutableArray alloc] initWithObjects:@"Helvetica", @"Chalkduster", @"Arial", @"Arial-BoldMT", nil];
 
@@ -45,7 +52,7 @@ UIColor *borderColor = nil;
 @class SBMutableIconLabelImageParameters; 
 static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, NSString *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, NSString *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIFont *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIFont *); static void (*_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$)(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$(_LOGOS_SELF_TYPE_NORMAL SBMutableIconLabelImageParameters* _LOGOS_SELF_CONST, SEL, UIColor *); 
 
-#line 23 "Tweak.xm"
+#line 30 "Tweak.xm"
 
 
 
@@ -72,7 +79,7 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextCo
 
 
     if (changeColors  == true){
-		arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#ff0000"));;
+		arg1 = (LCPParseColorString([settings objectForKey:@"kTintColor"], @"#000000"));;
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$(self, _cmd, arg1);
 	} else {
 
@@ -93,15 +100,16 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(
 			hideLabels = true;
 		}
 	
-	customLabel = [arg1 stringByReplacingOccurrencesOfString:@"Facebook" withString:@"Satan"];
+	customLabel = [arg1 stringByReplacingOccurrencesOfString:wordsToReplace[1] withString:wordsToReplaceTo[1]];
 
 	
 
 
 	if (hideLabels == true) {
-		arg1 = [NSString stringWithFormat:@"%@ %@", customLabel2, customLabel];
+		
+		
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$(self, _cmd, arg1);
-	} else if (hideLabels == false && changeLabels == false) {
+	} else if (hideLabels == false){
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$(self, _cmd, arg1);
 	}
 }
@@ -119,16 +127,18 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(
 		} else {
 			changeLabelSize = true;
 		}
+		
 
 	id fontsSetting = [bundleDefaults valueForKey:@"fontsSetting"];
 	id sizeStepper = [bundleDefaults valueForKey:@"sizeStepper"];
-	int id = [sizeStepper intValue];
+	sizeLabel = [sizeStepper intValue];
+	
 
 	if (changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:fontsSetting size:id];
+		arg1 = [UIFont fontWithName:fontsSetting size:14.0];
 	    _logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	} else if (changeLabelSize == false) {
-		arg1 = [UIFont fontWithName:fontsSetting size:14];
+		arg1 = [UIFont fontWithName:fontsSetting size:14.0];
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	}
 
@@ -150,7 +160,7 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusH
 	
 
 	if (changeLabelBorder == true) {
-		arg1 = (LCPParseColorString([settings objectForKey:@"kBorderColor"], @"#ff0000"));;
+		arg1 = (LCPParseColorString([settings objectForKey:@"kBorderColor"], @"#ffffff"));;
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$(self, _cmd, arg1);
 	} else {
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$(self, _cmd, arg1);
@@ -162,4 +172,4 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusH
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$SBMutableIconLabelImageParameters = objc_getClass("SBMutableIconLabelImageParameters"); MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setTextColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setTextColor$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setText:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFont:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$);MSHookMessageEx(_logos_class$_ungrouped$SBMutableIconLabelImageParameters, @selector(setFocusHighlightColor:), (IMP)&_logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$, (IMP*)&_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFocusHighlightColor$);} }
-#line 137 "Tweak.xm"
+#line 147 "Tweak.xm"
