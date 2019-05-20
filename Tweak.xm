@@ -68,10 +68,10 @@ UIColor *borderColor = nil;
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id hideIconsPref = [bundleDefaults valueForKey:@"hideIconsPref"];
-		if ([hideIconsPref isEqual:@0]) {
-			hideLabels = false;
-		} else {
+		if ([hideIconsPref isEqual:@1]) {
 			hideLabels = true;
+		} else {
+			hideLabels = false;
 		}
 	// customLabel = arg1;
 	customLabel = [arg1 stringByReplacingOccurrencesOfString:wordsToReplace[1] withString:wordsToReplaceTo[1]];
@@ -81,7 +81,7 @@ UIColor *borderColor = nil;
 
 	if (hideLabels == true) {
 		// arg1 = [NSString stringWithFormat:@"%@ %@", customLabel, customLabel2];
-		// arg1 = nil;
+		arg1 = nil;
 		%orig;
 	} else if (hideLabels == false){
 		%orig;
@@ -96,10 +96,10 @@ UIColor *borderColor = nil;
 
 	id sizePref = [bundleDefaults valueForKey:@"sizePref"];
 
-		if ([sizePref isEqual:@0]) {
-			changeLabelSize = false;
-		} else {
+		if ([sizePref isEqual:@1]) {
 			changeLabelSize = true;
+		} else {
+			changeLabelSize = false;
 		}
 		
 
@@ -109,7 +109,7 @@ UIColor *borderColor = nil;
 	
 
 	if (changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:fontsSetting size:14.0];
+		arg1 = [UIFont fontWithName:fontsSetting size:sizeLabel];
 	    %orig;
 	} else if (changeLabelSize == false) {
 		arg1 = [UIFont fontWithName:fontsSetting size:14.0];

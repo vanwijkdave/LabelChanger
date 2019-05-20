@@ -94,10 +94,10 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(
 	NSDictionary *bundleDefaults = [[NSUserDefaults standardUserDefaults]
 	persistentDomainForName:@"com.daveapps.labelchanger"];
 	id hideIconsPref = [bundleDefaults valueForKey:@"hideIconsPref"];
-		if ([hideIconsPref isEqual:@0]) {
-			hideLabels = false;
-		} else {
+		if ([hideIconsPref isEqual:@1]) {
 			hideLabels = true;
+		} else {
+			hideLabels = false;
 		}
 	
 	customLabel = [arg1 stringByReplacingOccurrencesOfString:wordsToReplace[1] withString:wordsToReplaceTo[1]];
@@ -107,7 +107,7 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setText$(
 
 	if (hideLabels == true) {
 		
-		
+		arg1 = nil;
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$(self, _cmd, arg1);
 	} else if (hideLabels == false){
 		_logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setText$(self, _cmd, arg1);
@@ -122,10 +122,10 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(
 
 	id sizePref = [bundleDefaults valueForKey:@"sizePref"];
 
-		if ([sizePref isEqual:@0]) {
-			changeLabelSize = false;
-		} else {
+		if ([sizePref isEqual:@1]) {
 			changeLabelSize = true;
+		} else {
+			changeLabelSize = false;
 		}
 		
 
@@ -135,7 +135,7 @@ static void _logos_method$_ungrouped$SBMutableIconLabelImageParameters$setFont$(
 	
 
 	if (changeLabelSize == true) {
-		arg1 = [UIFont fontWithName:fontsSetting size:14.0];
+		arg1 = [UIFont fontWithName:fontsSetting size:sizeLabel];
 	    _logos_orig$_ungrouped$SBMutableIconLabelImageParameters$setFont$(self, _cmd, arg1);
 	} else if (changeLabelSize == false) {
 		arg1 = [UIFont fontWithName:fontsSetting size:14.0];
