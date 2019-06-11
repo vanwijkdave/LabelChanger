@@ -107,6 +107,7 @@ UIColor *borderColor = nil;
 	id sizeStepper = [bundleDefaults valueForKey:@"sizeStepper"];
 	sizeLabel = [sizeStepper intValue];
 	
+	
 
 	if (changeLabelSize == true) {
 		arg1 = [UIFont fontWithName:fontsSetting size:sizeLabel];

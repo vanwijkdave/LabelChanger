@@ -68,6 +68,8 @@
 				<string>Helvetica</string>
 				<string>Zapfino</string>
 				<string>Marker Felt</string>
+				<string>Roboto</string>
+
     		</array>
        			<key>validTitles</key>
             <array>
@@ -79,6 +81,8 @@
 				<string>Helvetica</string>
 				<string>Zapfino</string>
 				<string>Marker Felt</string>
+				<string>Roboto</string>
+
            	</array>
 		</dict>
 		<dict>
